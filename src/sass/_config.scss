@@ -1,0 +1,140 @@
+
+$primary-background-color: azure;
+$secondary-background-color: teal;
+$primary-color: #333;
+
+
+@mixin fontFace {
+  @font-face {
+    font-family: 'gothamRounded medium';
+    src: url("/static/assets/fonts/GothamRounded-Medium.otf") format("opentype");
+    font-weight: 500;
+  }
+  
+  @font-face {
+    font-family: 'gothamRounded light';
+    src: url("/static/assets/fonts/GothamRounded-Light.otf") format("opentype");
+    font-weight: 300;
+  }
+
+  @font-face {
+    font-family: 'Garamond Regular';
+    src: url("/static/assets/fonts/Garamond-Regular.ttf") format("truetype");
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'hermit';
+    src: url("/static/assets/fonts/hermitLight.otf") format("opentype");
+    font-weight: 300;
+  }
+}
+
+
+@mixin easeOut($t) {
+  transition: all $t ease-out;
+}
+
+@mixin heartAnimation($t) {
+  animation: a $t linear infinite;
+  @keyframes a {
+    0% {
+      transform: scale(1);
+    }
+    30% {
+      transform: scale(1);
+    }
+    45% {
+      transform: scale(1.1);
+    }
+    60% {
+      transform: scale(1);
+    }
+    70% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+
+@mixin handleError($displayError, $slideError, $hideError) {
+ 
+  #{$displayError} {
+    font-family: hermit, 'sans-serif';
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 0;
+    word-spacing: -3px;
+    width: 100%;
+    padding: .7rem 1rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: transparent;
+    // background-color: #000;
+    margin: 1rem 0 2rem 0;
+    position: relative;
+    border-radius: 2rem;
+    z-index: 1;
+    @include easeOut(1s);
+    
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      border-radius: .4rem;
+      background-image: linear-gradient(to right, hsl(0, 100%, 90%), hsl(0, 90%, 90%));
+      z-index: -1;
+      @include easeOut(1.5s);
+    }
+
+    &#{$slideError} {
+      color: #333;
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &#{$hideError} {
+      padding: 0;
+      margin: 0;
+      visibility: hidden;
+      opacity: 0;
+      &::after {
+        width: 0;
+      }
+    }
+  }
+
+}
+
+
+
+
+
+
+@mixin mediaExSm {
+  @media only screen and (min-width: 480px) {
+    @content;
+  }
+}
+@mixin mediaSm {
+  @media only screen and (min-width: 768px) {
+    @content;
+  }
+}
+@mixin mediaMd {
+  @media only screen and (min-width: 992px) {
+    @content;
+  }
+}
+@mixin mediaLg {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}

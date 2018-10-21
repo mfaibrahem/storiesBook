@@ -1,0 +1,41 @@
+
+<div class="stories-wrapper">
+
+  {{#if err}}
+    <div class="display-error">{{err}}</div>
+  {{else}}
+  {{/if}}
+
+  {{#each stories}}
+    <div class="story-wrapper">
+   
+      <div class="left">
+        <h3>{{title}}
+          <span>( {{formateDate story.date 'D MMMM YYYY'}} )</span>
+        </h3>
+        <p>{{stripTags (truncate details 150)}}</p>
+        
+        <a href="/api/stories/{{_id}}">read more</a>
+        
+        {{#if ../loggedIn}}    
+            {{{editIcon user._id ../user._id _id}}} 
+        {{else}}
+        {{/if}}
+      </div>
+
+      <div class="bottom">
+        {{#if ../loggedIn}}
+          {{{username user._id ../user._id user.name}}}
+        {{else}}
+          <a href="/api/users/{{user._id}}"><i class="fa fa-user"></i>{{user.name}}</a>
+        {{/if}}
+      </div>
+    </div>
+
+    {{else}}
+      <p>There are no Stories listed Yet!</p>
+
+  {{/each}}
+
+</div>
+

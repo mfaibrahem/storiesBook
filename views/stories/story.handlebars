@@ -1,0 +1,26 @@
+
+
+{{#if err}}
+  <div class="display-error">{{err}}</div>
+{{else}}
+
+{{/if}}
+
+<div class="single-story">
+  <div class="right">
+    <a href="/api/users/{{user._id}}"><i class="fa fa-user"></i><span>{{story.user.name}}</span></a>
+  </div>
+  
+  <div class="left">
+    <h1>{{story.title}}
+      <span>( {{formateDate story.date 'D MMMM YYYY'}} )</span>
+    </h1>
+    <p>{{{story.details}}}</p>
+    
+    {{#if loggedIn}}    
+        {{{editIcon story.user._id user._id story._id}}} 
+    {{else}}
+    {{/if}}
+  </div>
+
+</div>

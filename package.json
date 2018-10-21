@@ -1,0 +1,50 @@
+{
+  "name": "story_books",
+  "version": "1.0.0",
+  "description": "app used to add daily stories",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mfaibrahem/storiesBook"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production -w"
+  },
+  "keywords": [
+    "story",
+    "book"
+  ],
+  "author": "mfaibrahem",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.0",
+    "mini-css-extract-plugin": "^0.4.3",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.1",
+    "body-parser": "^1.18.3",
+    "build": "^0.1.4",
+    "config": "^2.0.1",
+    "connect-flash": "^0.1.1",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "joi": "^13.7.0",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
+    "method-override": "^3.0.0",
+    "moment": "^2.22.2",
+    "mongoose": "^5.3.1",
+    "node-localstorage": "^1.3.1"
+  }
+}

@@ -1,0 +1,22 @@
+<div class="add-story-form">
+  {{#if err}}
+    <div class="display-error">{{err}}</div>
+  {{else}}
+
+  {{/if}}
+  <h1>Register</h1>
+  <form action="/api/users" method="POST">
+    {{!-- <label for="title">Title</label> --}}
+    <input type="text" name="name" placeholder="username ....." value="{{name}}" required>
+    <div></div>
+    <input type="email" name="email" placeholder="email ....." value="{{email}}" required>
+    <div></div>
+    <input type="password" name="password" placeholder="password [a-zA-Z0-9]....." value="{{password}}" required>
+    <div></div>
+    <input type="password" name="confirmPassword" placeholder="confirm password ....." value="{{confirmPassword}}" required>
+    <div></div>
+    
+    <button type="submit">Submit</button>
+  </form>
+</div>
+</div>

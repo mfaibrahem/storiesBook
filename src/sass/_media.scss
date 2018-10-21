@@ -1,0 +1,72 @@
+
+@include mediaExSm {
+
+}
+
+@include mediaSm {
+
+  header {
+    width: 45vw;
+  }
+
+  .container {
+
+    &.clip-container {
+      transform: translateX(45vw);
+    }
+    .card {
+      width: 65vw;
+    }
+    .add-story-form {
+      width: 90vw;
+    }
+
+    .stories-wrapper {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@include mediaMd {
+
+  header {
+    width: 35vw;
+  }
+  .container {
+    &.clip-container {
+      transform: translateX(35vw);
+    }
+    .card {
+      width: 50vw;
+    }
+
+    .stories-wrapper {
+      width: 95%;
+    }
+  }
+  .add-story-form {
+    width: 80vw;
+  }
+}
+
+@include mediaLg {
+
+  header {
+    width: 26vw;
+  }
+  .container {
+    &.clip-container {
+      transform: translateX(26vw);
+    }
+    .card {
+      width: 40%;
+    }
+
+    .stories-wrapper {
+      // width: 85%;
+    }
+  }
+  .add-story-form {
+    width: 70%;
+  }
+}

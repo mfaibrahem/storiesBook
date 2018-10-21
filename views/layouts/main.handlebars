@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/index_bundle.css">
+  <title>story books</title>
+</head>
+<body>
+
+  {{> _header}}
+  
+
+  <div class="container">
+    
+  <div class="reg-log">
+    <a class="logo" href="/">
+      <svg viewBox="0 0 648.51 448.87">
+        <g>
+          <g>
+            <path class="to-filled" d="M349.25,111.05c5.53-4.85,10.54-9.33,15.13-13.45,29.22-26.18,43.89-39.32,97.81-58.95C486,30,518.84,25,552.25,25a311.61,311.61,0,0,1,52.14,4.21c10.9,1.87,19.12,13.77,19.12,27.69V305.21c0,11.61-6.86,21.85-15.63,23.31-45.21,7.59-95.4,19.42-145.18,34.23-35.6,10.59-75.41,23.74-113.45,42.92Z"/>
+            <path class="to-stroked" d="M552.26,50a293,293,0,0,1,45.59,3.47,8.5,8.5,0,0,1,.66,3.43V304.76a1253.74,1253.74,0,0,0-142.94,34c-25.63,7.62-53.4,16.55-81.32,28V122.32l6.82-6.1c28.49-25.53,40.29-36.1,89.68-54.08C491.93,54.43,521.64,50,552.26,50h0m0-50C516.53,0,481,5.21,453.64,15.16c-71.73,26.11-81.11,43.18-129.39,84.47V448.87c42.28-27.87,91.91-46.19,145.58-62.16,50.66-15.07,99.08-26.3,142.18-33.53,21-3.51,36.5-23.95,36.5-48V56.9c0-26.24-17-48.41-39.91-52.33A338.25,338.25,0,0,0,552.26,0Z"/>
+          </g>
+          <g>
+            <path class="to-filled" d="M299.25,405.67c-38-19.18-77.84-32.33-113.45-42.93C136,347.93,85.8,336.1,40.63,328.53,31.87,327.06,25,316.82,25,305.21V56.9C25,43,33.22,31.08,44.12,29.22A310.62,310.62,0,0,1,96.26,25c33.41,0,66.24,5,90.06,13.65,53.92,19.63,68.59,32.77,97.81,59,4.59,4.11,9.6,8.59,15.12,13.44Z"/>
+            <path class="to-stroked" d="M96.26,50c30.61,0,60.32,4.43,81.51,12.14,49.39,18,61.18,28.55,89.68,54.08q3.26,2.93,6.8,6.09V366.83c-27.92-11.49-55.69-20.42-81.32-28.05A1255.48,1255.48,0,0,0,50,304.76V56.9a8.44,8.44,0,0,1,.66-3.42A292,292,0,0,1,96.26,50m0-50A338.28,338.28,0,0,0,39.91,4.57C17,8.49,0,30.66,0,56.9V305.21c0,24,15.52,44.46,36.5,48,43.1,7.23,91.52,18.46,142.18,33.53,53.67,16,103.3,34.29,145.57,62.16V99.63C276,58.34,266.6,41.27,194.87,15.16,167.56,5.22,132,0,96.26,0Z"/>
+          </g>
+          <text class="svg-text" transform="translate(123.12 249.61)">S</text>
+          <text class="svg-text" transform="translate(447 249.61)">B</text>
+        </g>
+      </svg>
+    </a>
+
+    {{#if loggedIn}}
+      <div class="navs">
+        <a href="/api/users/me"><i class="fa fa-user"></i>{{user.name}}</a>
+        <a href="/api/logout">Logout</a>
+      </div>
+    {{else}}
+    
+      <a href="/api/users">Register</a>
+      <a href="/api/auth">Login</a>
+    {{/if}}
+  </div>
+  
+    {{{body}}}
+  </div>
+
+  <script src="https://cdn.ckeditor.com/4.10.1/basic/ckeditor.js"></script>
+  <script src="/static/index_bundle.js"></script>
+</body>
+</html>

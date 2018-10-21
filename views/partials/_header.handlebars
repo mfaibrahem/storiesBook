@@ -1,0 +1,17 @@
+  <header>
+    <nav>
+      <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/api/stories">Public Stories</a></li>
+        {{#if loggedIn}}
+          <li><a href="/api/stories/add">Add Story</a></li>
+        {{/if}}
+        <li><a href="/about">ABOUT</a></li>
+      </ul>
+    </nav>
+  </header>
