@@ -121,7 +121,7 @@ header {
   padding-top: 140px;
   transition: all 0.6s ease-out; }
   .container.clip-container {
-    transform: translateX(80%); }
+    transform: translateX(80vw); }
   .container a:visited {
     color: unset; }
   .container .reg-log {
@@ -136,6 +136,7 @@ header {
     background-color: #576574;
     margin-bottom: 3rem; }
     .container .reg-log a.logo {
+      display: none;
       position: absolute;
       width: 60px;
       height: 60px;
@@ -670,6 +671,8 @@ header {
 @media only screen and (min-width: 768px) {
   header {
     width: 45vw; }
+  .container .reg-log a.logo {
+    display: block; }
   .container.clip-container {
     transform: translateX(45vw); }
   .container .card {

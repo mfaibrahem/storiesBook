@@ -5,7 +5,7 @@
   @include easeOut(.6s);
 
   &.clip-container {
-    transform: translateX(80%);
+    transform: translateX(80vw);
   }
   a:visited {
     color: unset;
@@ -23,6 +23,7 @@
     background-color: #576574;
     margin-bottom: 3rem;
     a.logo {
+      display: none;
       position: absolute;
       width: 60px;
       height: 60px;

@@ -11,6 +11,11 @@
 
   .container {
 
+    .reg-log {
+      a.logo {
+        display: block;
+      }
+    }
     &.clip-container {
       transform: translateX(45vw);
     }
@@ -33,6 +38,7 @@
     width: 35vw;
   }
   .container {
+
     &.clip-container {
       transform: translateX(35vw);
     }
@@ -62,9 +68,6 @@
       width: 40%;
     }
 
-    .stories-wrapper {
-      // width: 85%;
-    }
   }
   .add-story-form {
     width: 70%;
