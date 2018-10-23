@@ -4,15 +4,15 @@
     <div class="display-error">{{err}}</div>
   {{else}}
 
-  {{/if}}
+  {{/if}} 
   <h1>Edit Your Story</h1>
-  <form action="/api/stories/{{story._id}}?_method=PUT" method="POST">
+  <form action="/api/stories/{{_id}}?_method=PUT" method="POST">
     <input type="hidden" name="_method" value="PUT">
 
-    <input id="title" type="text" name="title" placeholder="Title ....." value="{{story.title}}" required>
+    <input id="title" type="text" name="title" placeholder="Title ....." value="{{title}}" required>
     <div></div>
     <label for="details">Tell Us Your Story</label>
-    <textarea id="details" name="details" required>{{story.details}}</textarea>
+    <textarea id="details" name="details" required>{{details}}</textarea>
     <div></div>
     <div class="select-check">
       <select name="status" id="status" required>
@@ -21,7 +21,7 @@
       </select>
       <div class="check">
         <label for="checkbox">Allow Comments</label>
-        <input id="checkbox" type="checkbox" name="allowComments" required>
+        <input id="checkbox" type="checkbox" name="allowComments" checked>
       </div>
     </div>
 

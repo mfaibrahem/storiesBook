@@ -26,11 +26,23 @@
       }
     }
 
-    &>a {
+    .dashboard-icon-link {
+      color: #FFF;
+      background-color: rgb(85, 239, 195);
+      position: absolute;
+      top: -1rem;
+      right: -1rem;
+      font-size: 1rem;
+      padding: .4rem .5rem;
+      border-radius: 50%;
+      animation: dashboard-icon 2s ease infinite;
+    }
+
+    .edit-user-link {
       width: max-content;
       padding: .4rem 1rem;
       background-color: transparent;
-      border: 1px solid #3dc174;
+      border: 1px solid gold;
       border-radius: 1rem;
       margin-right: 1rem;
       position: relative;
@@ -49,92 +61,10 @@
         }
       }
 
-      &:nth-of-type(2) {
+      &.edit-link {
         position: absolute;
         right: 0;
         bottom: 1rem;
-      }
-    }
-    
-    .delete-form {
-      .delete-btn {
-        border: 0;
-        padding: .6rem .6rem .3rem .6rem;
-        background-color: #EEE;
-        box-shadow: 2px 2px 1.6rem rgba(0, 0, 0, .2);
-        border-radius: 50%;
-        position: absolute;
-        top: -1rem;
-        right: -1rem;
-        transform: rotate(30deg);
-        @include easeOut(.3s);
-        cursor: pointer;
-        z-index: 1;
-        &:focus {
-          outline: 0;
-          border: 0;
-        }
-        
-        &:hover {
-          transform: rotate(-40deg);
-          background-color: hsl(0, 80%, 60%);
-          div {
-            span {
-              // visibility: visible;
-              // opacity: 1;
-              transform: translate(50%, 0);
-              animation: hide 2s ease-out;
-            }
-            svg {
-              .cls-1 {
-                fill: #FFF;
-              }
-            }
-
-          }
-        }
-
-        div {
-          position: relative;
-
-          span {
-            visibility: hidden;
-            opacity: 0;
-            position: absolute;
-            bottom: calc(100% + .6rem);
-            right: 50%;
-            // transform: translate(50%, 150%);
-            display: inline-block;
-            background-color: hsl(240, 80%, 77%);;
-            color: #FFF;
-            padding: .4rem .6rem;
-            font-size: .8rem;
-            border-radius: .8rem;
-            width: max-content;
-            transition: visibility, opacity, transform .2s ease-out;
-            transition-delay: .2s;
-            
-            &::after {
-              content: "";
-              position: absolute;
-              top: 100%;
-              left: 50%;
-              margin-left: -6px;
-              border-width: 6px;
-              border-style: solid;
-              border-color: hsl(240, 80%, 77%) transparent transparent transparent;
-            }
-          }
-
-          svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            .cls-1 {
-              fill: hsl(0, 80%, 60%);
-            }
-          }
-        }
-        
       }
     }
   }
@@ -187,5 +117,17 @@
   100% {
     visibility: hidden;
     opacity: 0;
+  }
+}
+
+@keyframes dashboard-icon {
+  0% {
+    box-shadow: 0 0 0 0 rgb(85, 239, 195);
+  }
+  70% {
+    box-shadow: 0 0 0 1rem rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
   }
 }

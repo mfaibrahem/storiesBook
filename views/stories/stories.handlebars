@@ -15,9 +15,9 @@
         </h3>
         <p>{{stripTags (truncate details 150)}}</p>
         
-        <a href="/api/stories/{{_id}}">read more</a>
+        <a class="edit-user-link" href="/api/stories/{{_id}}">read more</a>
         
-        {{#if ../loggedIn}}    
+        {{#if ../loggedIn}}
             {{{editIcon user._id ../user._id _id}}} 
         {{else}}
         {{/if}}

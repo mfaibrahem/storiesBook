@@ -65,6 +65,8 @@ function validatePutStory(story) {
   const Schema = {
     title: Joi.string().min(5).max(255).required(),
     details: Joi.string().min(5).required(),
+    status: Joi.string().required(),
+    allowComments: Joi.boolean().required(),
     _method: 'PUT' || 'DELETE'
   };
   return Joi.validate(story, Schema);

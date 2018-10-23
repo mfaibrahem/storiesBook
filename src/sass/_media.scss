@@ -5,6 +5,30 @@
 
 @include mediaSm {
 
+  .alert {
+    &>div {
+      width: 60%;
+      padding: 1.6rem 2.4rem;
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
+
+      span {
+        font-size: 1.2rem;
+        padding-bottom: 1.5rem;
+        margin: 0 -2.4rem 2rem -2.4rem;
+      }
+
+      .y-n-div {
+        button {
+          font-size: 1.1rem;
+          padding: .5rem 1rem;
+        }
+      }
+    }
+  }
+
   header {
     width: 45vw;
   }
@@ -34,6 +58,32 @@
 
 @include mediaMd {
 
+
+  .alert {
+    &>div {
+      width: 50%;
+      padding: 1.8rem 2.8rem;
+      svg {
+        width: 1.1rem;
+        height: 1.1rem;
+      }
+
+      span {
+        font-size: 1.2rem;
+        padding-bottom: 1.5rem;
+        margin: .5rem -2.8rem 2rem -2.8rem;
+      }
+
+      .y-n-div {
+        button {
+          font-size: 1.2rem;
+          padding: .8rem 1.7rem;
+        }
+      }
+    }
+  }
+
+
   header {
     width: 35vw;
   }
@@ -44,10 +94,6 @@
     }
     .card {
       width: 50vw;
-    }
-
-    .stories-wrapper {
-      width: 95%;
     }
   }
   .add-story-form {

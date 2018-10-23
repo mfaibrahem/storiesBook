@@ -36,6 +36,8 @@ input, button {
   font-family: 'gothamRounded light', sans-serif;
 }
 
+@import 'alert';
+
 @include header;
 
 

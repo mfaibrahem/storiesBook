@@ -100,7 +100,7 @@
         top: -2rem;
         right: -2rem;
         transform: rotate(30deg);
-        @include easeOut(.2s);
+        @include easeOut(.3s);
         cursor: pointer;
         z-index: 1;
         &:focus {
@@ -116,10 +116,10 @@
               // visibility: visible;
               // opacity: 1;
               transform: translate(50%, 0);
-              animation: hide 2s ease-out;
+              animation: hide 2s .2s ease-out;
             }
             svg {
-              .cls-1 {
+              .x-path {
                 fill: #FFF;
               }
             }
@@ -162,7 +162,7 @@
           svg {
             width: 2.5rem;
             height: 2.5rem;
-            .cls-1 {
+            .x-path {
               fill: hsl(0, 80%, 60%);
             }
           }

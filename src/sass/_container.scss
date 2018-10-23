@@ -277,6 +277,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 2rem;
+    width: 95%;
     margin: auto;
     
     @import 'story-wrapper';
