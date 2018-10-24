@@ -1,45 +1,89 @@
 
 .single-story {
   display: flex;
+  flex-direction: column;
   padding: 1rem;
-  .right {
-    order: 1;
-    flex: 1 20%;
-    margin-left: 1rem;
-
-    a {
+  margin-top: -77px;
+  .top {
+    display: flex;
+    justify-content: space-between;
+    background: #576574;
+    margin: 0 -1rem 4rem -1rem;
+    padding: 2rem 0 2rem 1rem;
+    .info {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      span {
-        width: max-content;
-        letter-spacing: 0;
-        padding: .4rem .9rem;
-        background-color: transparent;
-        border-radius: 1rem;
-        border: 1px solid;
-        border-color: hsl(240, 80%, 75%);
-        position: relative;
-        &:hover {
-          &::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 1rem;
-            background-color: transparent;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 25%, hsla(240, 80%, 75%, 0.2) 75%);   
+      .first-letter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1.7rem;
+        width: 9rem;
+        height: 9rem;
+        background-color: #34e7e4;
+        color: #FFF;
+        font-size: 6rem;
+        border-radius: 50%;
+        margin-right: 2rem;
+      }
+      .sub {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        a {
+          color: #FFF;
+          text-transform: uppercase;
+          width: max-content;
+          font-size: 1.2rem;
+          font-weight: bold;
+          letter-spacing: 0;
+          padding: .6rem 1rem;
+          background-color: transparent;
+          border: 1px solid;
+          border-color: gold;
+          border-radius: .4rem;
+          position: relative;
+          &:hover {
+            background-color: gold;
+            @include easeOut(.2s);
+            color: #485460;
+            &::after {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              border-radius: .4rem;
+              background-color: transparent;
+              background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 25%, rgba(255, 215, 0, .8) 75%);   
+            }
+          }
+        
+    
+        }
+        .n-stories {
+          margin-top: 1rem;
+          color: #FFF;
+          font-size: 1.3rem;
+          span {
+            background: #34e7e4;
+            padding: 0 1rem;
+            border-radius: .2rem;
           }
         }
       }
-
     }
+    .join-date {
+      display: none;
+      color: #FFF;
+      font-size: 1.2rem;
+      align-self: flex-end;
+      margin-right: 1rem;
+    }
+    
+
   }
-  .left {
-    order: 0;
-    flex: 1 80%;
+  .bottom {
     background-color: hsla(240, 80%, 85%, .15);
     border-radius: .5rem;
     color: #222;

@@ -83,9 +83,6 @@ router.post('/', async (req, res) => {
       confirmPassword: req.body.confirmPassword
     });
   }
-    
-
-  
   
   try {
     let user = await User.findOne({ email: req.body.email });

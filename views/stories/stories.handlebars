@@ -8,10 +8,10 @@
 
   {{#each stories}}
     <div class="story-wrapper">
-   
+  
       <div class="left">
         <h3>{{title}}
-          <span>( {{formateDate story.date 'D MMMM YYYY'}} )</span>
+          <span>( {{formatDate story.date 'D MMMM YYYY'}} )</span>
         </h3>
         <p>{{stripTags (truncate details 150)}}</p>
         

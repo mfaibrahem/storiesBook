@@ -1,23 +1,37 @@
 
-
 {{#if err}}
   <div class="display-error">{{err}}</div>
 {{else}}
 
-{{/if}}
+{{/if}} 
 
 <div class="single-story">
-  <div class="right">
+  <div class="top">
     {{#if loggedIn}}
-      {{{username story.user._id user._id story.user.name firstLetter targetUser.date nStories}}}
+      <div class="info">
+        <div class="first-letter"><span>{{firstLetter}}</span></div>
+        <div class="sub">
+          {{{hideLoggedInDate story.user._id user._id story.user.name}}}
+          <div class="n-stories">Stories >> <span>{{nStories}}</span></div>
+          <span class="join-date">Joined ( {{formatDate targetUser.date 'D MMMM YYYY'}} )</span>
+        </div>
+      </div>
+      
     {{else}}
-      <a href="/api/users/{{story.user._id}}"><span>{{story.user.name}}</span></a>
+      <div class="info">
+        <div class="first-letter"><span>{{firstLetter}}</span></div>
+        <div class="sub">
+          <a class="edit-user-link" href="/api/users/{{story.user._id}}"><span>{{story.user.name}}</span></a>
+          <div class="n-stories">Stories >> <span>{{nStories}}</span></div>
+          <span class="join-date">Joind ( {{formatDate story.user._id user._id story.user.date 'D MMMM YYYY'}} )</span>
+        </div>
+      </div>
     {{/if}}
   </div>
   
-  <div class="left">
+  <div class="bottom">
     <h1>{{story.title}}
-      <span>( {{formateDate story.date 'D MMMM YYYY'}} )</span>
+      <span>( {{formatDate story.date 'D MMMM YYYY'}} )</span>
     </h1>
     <p>{{{story.details}}}</p>
     
