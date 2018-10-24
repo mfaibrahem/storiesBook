@@ -38,10 +38,12 @@ input, button {
 
 @import 'alert';
 
-@include header;
+@import 'reg-log';
 
+@import 'header';
 
 @import 'container';
 
+@import 'footer';
 
 @import 'media';

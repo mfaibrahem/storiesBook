@@ -5,6 +5,15 @@
 
 @include mediaSm {
 
+  .reg-log {
+    &.clip-reg-log {
+      transform: translateX(45vw);
+    }
+    a.logo {
+      display: block;
+    }
+  }
+
   .alert {
     &>div {
       width: 60%;
@@ -34,12 +43,6 @@
   }
 
   .container {
-
-    .reg-log {
-      a.logo {
-        display: block;
-      }
-    }
     &.clip-container {
       transform: translateX(45vw);
     }
@@ -54,11 +57,20 @@
       grid-template-columns: 1fr 1fr;
     }
   }
+  footer {
+    &.clip-footer {
+      transform: translateX(45vw);
+    }
+  }
 }
 
 @include mediaMd {
 
-
+  .reg-log {
+    &.clip-reg-log {
+      transform: translateX(35vw);
+    }
+  }
   .alert {
     &>div {
       width: 50%;
@@ -99,10 +111,45 @@
   .add-story-form {
     width: 80vw;
   }
+
+
+  footer {
+
+    .bottom {
+      
+      display: flex;
+      justify-content: space-between;
+      padding: 0 2.4rem;
+
+      .left {
+        flex-direction: row;
+        
+        .footer-nav {
+          margin-left: 2rem;  
+        }
+      } // end left
+
+      .right {
+        div {
+          align-items: flex-start;
+        }
+      }
+    } // end bottom
+    &.clip-footer {
+      transform: translateX(35vw);
+    }
+  }
+
+
+
 }
 
 @include mediaLg {
-
+  .reg-log {
+    &.clip-reg-log {
+      transform: translateX(26vw);
+    }
+  }
   header {
     width: 26vw;
   }
@@ -117,5 +164,11 @@
   }
   .add-story-form {
     width: 70%;
+  }
+
+  footer {
+    &.clip-footer {
+      transform: translateX(26vw);
+    }
   }
 }

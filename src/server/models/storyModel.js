@@ -1,7 +1,6 @@
 
 const mongoose = require('mongoose');
 const Joi = require('joi');
-
 const storySchema = new mongoose.Schema({
   title: {
     type: String,

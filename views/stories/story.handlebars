@@ -8,7 +8,11 @@
 
 <div class="single-story">
   <div class="right">
-    <a href="/api/users/{{user._id}}"><i class="fa fa-user"></i><span>{{story.user.name}}</span></a>
+    {{#if loggedIn}}
+      {{{username story.user._id user._id story.user.name firstLetter targetUser.date nStories}}}
+    {{else}}
+      <a href="/api/users/{{story.user._id}}"><span>{{story.user.name}}</span></a>
+    {{/if}}
   </div>
   
   <div class="left">

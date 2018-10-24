@@ -28,9 +28,6 @@
   </div>
   {{> _header}}
   
-
-  <div class="container">
-    
   <div class="reg-log">
     <a class="logo" href="/">
       <svg viewBox="0 0 648.51 448.87">
@@ -62,9 +59,10 @@
     {{/if}}
   </div>
   
+  <div class="container" id="top">  
     {{{body}}}
   </div>
-
+  {{> _footer}}
   <script src="https://cdn.ckeditor.com/4.10.1/basic/ckeditor.js"></script>
   <script src="/static/index_bundle.js"></script>
 </body>

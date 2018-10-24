@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 8,
     maxlength: 1024,
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
   // confirmPassword: {
   //   type: String,

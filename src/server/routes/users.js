@@ -18,17 +18,27 @@ router.get('/me', auth, async (req, res) => {
     .find({user: req.user._id})
     .populate('user');
     // find the stories of the loggdIn user
-    res.render('./users/me', { user, stories });
+
+  const nStories = await Story
+    .find({user: req.user._id})
+    .countDocuments();
+  const firstLetter = user.name.substr(0, 1).toUpperCase();
+
+    res.render('./users/dashboard', { stories, nStories, firstLetter });
   });
   
   router.get('/:id', async (req, res) => {
-    // const targetUser = await User.findById(req.params.id).select('-password');
+    const targetUser = await User.findById(req.params.id).select('-password');
     const stories = await Story
-    .find({user: req.params.id})
-    .populate('user');
+      .find({user: req.params.id})
+      .populate('user');
     // findt the stories of any user by its id
-    // const loggedUser = req.user;
-    res.render('./users/profile', { stories });
+
+    const nStories = await Story
+    .find({user: req.params.id})
+    .countDocuments();
+    const firstLetter = targetUser.name.substr(0, 1).toUpperCase();
+    res.render('./users/profile', { stories, nStories, firstLetter, targetUser });
 });
 
 router.get('/', (req, res) => {

@@ -2,7 +2,8 @@
 const express = require('express');
 const _ = require('lodash');
 
-const { Story, validateStory, validatePutStory } = require('../models/storyModel'); 
+const { Story, validateStory, validatePutStory } = require('../models/storyModel');
+const { User } = require('../models/userModel');
 const auth = require('../middleware/auth')
 
 
@@ -150,11 +151,16 @@ router.get('/:id', async (req, res) => {
   try {
     const story = await Story
       .findById(req.params.id)
-      .populate('user', '_id name');
+      .populate('user', '_id name date');
+    const firstLetter = story.user.name.substr(0, 1).toUpperCase();
+    const targetUser = await User.findById({_id: story.user._id});
+    const nStories = await Story
+      .find({user: story.user._id})
+      .countDocuments();
     res.render('./stories/story', {
-        story
+        story, firstLetter, nStories, targetUser
     });
-        
+
   } catch(ex) {
     res.status(404).redirect('/');
   }

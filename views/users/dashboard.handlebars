@@ -1,20 +1,22 @@
-  {{#if err}}
-    <div class="display-error">{{err}}</div>
-  {{else}}
-  {{/if}}
 
-  <div class="dashboard-wrapper">
-    <div class="head">
-      <div class="content">
-        <div class="first-letter">{{firstLetter}}</div>
-        <div class="info">
-          <span class="name">{{targetUser.name}}</span>
-          <span class="number">Stories >> <span>{{nStories}}</span></span>
-          <span>Joined <span>( {{formateDate TargetUser.date 'D MMMM YYYY'}} )</span></span>
-        </div>
+{{#if err}}
+  <div class="display-error">{{err}}</div>
+{{else}}
+{{/if}}
+
+<div class="dashboard-wrapper">
+  <div class="head">
+    <div class="content">
+      <div class="first-letter">{{firstLetter}}</div>
+      <div class="info">
+        <span class="name">{{user.name}}</span>
+        <span class="number">Stories >> <span>{{nStories}}</span></span>
+        <span>Joined <span>( {{formateDate user.date 'D MMMM YYYY'}} )</span></span>
       </div>
-    </div> 
-    {{#each stories}}
+    </div>
+  </div> 
+
+  {{#each stories}}
     <div class="single">
       <div class="title-date">
         <span>{{title}}</span>
@@ -23,7 +25,9 @@
       <div class="stick"></div>
       <span>{{status}}</span>
       <div class="stick"></div>
-      <a class="read" href="/api/stories/{{_id}}"> 
+      <a class="edit-link edit-link" href="/api/stories/edit/{{_id}}">Update</a>
+      <div class="stick"></div>
+      <a class="read" href="/api/stories/{{_id}}">
         <svg viewBox="0 0 648.51 448.87">
           <g>
             <g>
@@ -38,9 +42,11 @@
         </svg>
       </a>
     </div>
-    
+
     {{else}}
       <p>There are no Stories listed Yet!</p>
   {{/each}}
 
 </div>
+
+

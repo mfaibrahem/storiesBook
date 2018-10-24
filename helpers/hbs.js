@@ -22,7 +22,7 @@ module.exports = {
   editIcon: function(storyUserId, loggedUserId, storyId) {
     if (storyUserId == loggedUserId) {
       return `
-        <a class="dashboard-icon-link" href="/api/users/dashboard"><i class="fa fa-user"></i></a>
+        <a class="dashboard-icon-link" href="/api/users/me"><i class="fa fa-user"></i></a>
         <a class="edit-user-link edit-link" href="/api/stories/edit/${storyId}">Edit</a>
       `;
     } else {
@@ -54,10 +54,13 @@ module.exports = {
     }
   },
 
-  username: function(storyUserId, loggedUserId, storyUsername) {
+  username: function(storyUserId, loggedUserId, storyUsername, storyUserfirstL, UserJoinDate, n) {
     if (storyUserId != loggedUserId) {
       return `
-        <a class="edit-user-link" href="/api/users/${storyUserId}"><i class="fa fa-user"></i>${storyUsername}</a>
+        <div class="first-letter"><span>${storyUserfirstL}</span></div>
+        <div class="join-date">${moment(`${UserJoinDate}`).formate('D MMMM YYYY')}</div>
+        <div class="n-stories">${n}</div>
+        <a class="edit-user-link" href="/api/users/${storyUserId}"><span>${storyUsername}</span></a>
       `;
     } else {
       return '';

@@ -3,10 +3,14 @@ import '../sass/main.scss';
 const UIheader = document.querySelector('header');
 const UImenuIcon = document.querySelector('.lines');
 const UIcontainer = document.querySelector('.container');
+const UIregLog = document.querySelector('.reg-log');
+const UIfooter = document.querySelector('footer');
 
 UImenuIcon.addEventListener('click', () => {
   UIheader.classList.toggle('show');
   UIcontainer.classList.toggle('clip-container');
+  UIregLog.classList.toggle('clip-reg-log');
+  UIfooter.classList.toggle('clip-footer');
 });
 
 if (document.querySelector('.display-error')) {
