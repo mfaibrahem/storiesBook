@@ -16,6 +16,7 @@ router.get('/me', auth, async (req, res) => {
   const user = await User.findById(req.user._id).select('-password');
   const stories = await Story
     .find({user: req.user._id})
+    .sort({date: -1})
     .populate('user');
     // find the stories of the loggdIn user
 
@@ -31,6 +32,7 @@ router.get('/me', auth, async (req, res) => {
     const targetUser = await User.findById(req.params.id).select('-password');
     const stories = await Story
       .find({user: req.params.id})
+      .sort({date: -1})
       .populate('user');
     // findt the stories of any user by its id
 
@@ -72,6 +74,7 @@ router.post('/', async (req, res) => {
       });
     }
   }
+
   const passError = validatePassword(req.body.password);
   if (passError) {
     // return res.status(400).send(passError);

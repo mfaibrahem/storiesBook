@@ -151,7 +151,9 @@ router.get('/:id', async (req, res) => {
   try {
     const story = await Story
       .findById(req.params.id)
-      .populate('user', '_id name date');
+      .populate('user')
+      .populate('comments.commentUser');
+
     const firstLetter = story.user.name.substr(0, 1).toUpperCase();
     const targetUser = await User.findById({_id: story.user._id});
     const nStories = await Story
@@ -160,11 +162,249 @@ router.get('/:id', async (req, res) => {
     res.render('./stories/story', {
         story, firstLetter, nStories, targetUser
     });
-
   } catch(ex) {
     res.status(404).redirect('/');
   }
 });
+
+// post a comment
+router.post('/comment/:id', auth, async(req, res) => {
+
+  try {
+    let story = await Story
+      .findById(req.params.id);
+      
+    story.comments.unshift({
+      commentBody: req.body.commentBody,
+      commentUser: req.user._id 
+    });
+    story = await story.save();
+    res.redirect(`/api/stories/${story._id}`);
+  }
+  catch (ex) {
+    console.log(ex);
+  }
+});
+
+
+router.post('/likes/:id', auth, async (req, res) => {
+  try {
+    const story = await Story.findById(req.params.id);
+    let likedUser = false;
+    let dislikedUser = false;
+    story.likes.forEach(ele => {
+      if (ele == req.user._id)
+        likedUser = true;
+    });
+    story.dislikes.forEach(ele => {
+      if (ele == req.user._id)
+        dislikedUser = true;
+    });
+
+    // if the likedUser id not in the likes array and the disLikedUser id not in the dislikes array
+    if (!likedUser && !dislikedUser) {
+      story.likesCount += 1;
+      story.likes.push(req.user._id);
+      await story.save();
+    }
+    // then check if the likedUser not in likes array and the dislkedUser in the dislikes array
+    // then decrease the dislikesCoutn by one and remove this user id from the dislikes array and increament the likeCoutn by 1 push it to the likes array
+    else if (!likedUser && dislikedUser) {
+      story.likesCount += 1;
+      story.likes.push(req.user._id);
+      story.dislikesCount -= 1;
+      story.dislikes.forEach((ele, index) => {
+        if (ele == req.user._id)
+          story.dislikes.splice(index, 1);
+      });
+      await story.save();
+    }
+    // check if the likedUser is in the likes array and the dislikedUser is not in the dislikes array
+    // then decrease the likesCount by 1 and pull the likedUser form the likes array
+    // but don't do any thing with the dislikes array  
+    else if (likedUser && !dislikedUser) {
+      story.likesCount -= 1;
+      story.likes.forEach((ele, index) => {
+        if (ele == req.user._id)
+          story.likes.splice(index, 1);
+      });
+      await story.save();
+    }
+     res.redirect(`/api/stories/${req.params.id}`);
+      // const story = await Story.findById(req.params.id);
+      // res.redirect(`/api/stories/${story._id}`);
+
+  }
+  catch(ex) {
+    console.log(ex);
+  }
+});
+
+router.post('/dislikes/:id', auth, async (req, res) => {
+  const story = await Story.findById(req.params.id);
+  let likedUser = false,
+      dislikedUser = false;
+  story.likes.forEach(ele => {
+    if (ele == req.user._id)
+      likedUser = true;
+  });
+  story.dislikes.forEach(ele => {
+    if (ele == req.user._id)
+      dislikedUser = true;
+  });
+
+
+  if (!dislikedUser && !likedUser) {
+    // add a dislike and push the user id
+      story.dislikesCount += 1;
+      story.dislikes.push(req.user._id);
+      await story.save();  
+    }
+  else if (!dislikedUser && likedUser) {
+    story.dislikesCount += 1;
+    story.dislikes.push(req.user._id);
+    story.likesCount -= 1;
+    story.likes.forEach((ele, index) => {
+      if (ele == req.user._id)
+        story.likes.splice(index, 1);
+    });
+    await story.save();
+  } 
+  
+  else if (dislikedUser && !likedUser) {
+    // decrease a dislike and pull the user id from the dislikes array
+    story.dislikesCount -= 1;
+    story.dislikes.forEach((ele, index) => {
+      if (ele == req.user._id)
+        story.dislikes.splice(index, 1);
+    });
+    await story.save();
+  }
+  res.redirect(`/api/stories/${req.params.id}`);
+});
+
+// router.post('/likes/:id', auth, async (req, res) => {
+//   try {
+//     const story = await Story.findById(req.params.id);
+//     let likedUser = false;
+//     let dislikedUser = false;
+//     story.likes.forEach(ele => {
+//       if (ele == req.user._id)
+//         likedUser = true;
+//     });
+//     story.dislikes.forEach(ele => {
+//       if (ele == req.user._id)
+//         dislikedUser = true;
+//     });
+//     // if the likedUser id not in the likes array and the disLikedUser id not in the dislikes array
+
+//     if (!likedUser && !dislikedUser) {
+//       await Story
+//         .updateOne(
+//           {_id: req.params.id}, {
+//             $inc: {likesCount: 1},
+//             $push: {likes: req.user._id}
+//           }
+//         );
+//     }
+//     // then check if the likedUser not in likes array and the dislkedUser in the dislikes array
+//     // then decrease the dislikesCoutn by one and remove this user id from the dislikes array and increament the likeCoutn by 1 push it to the likes array
+//     else if (!likedUser && dislikedUser) {
+//       await Story
+//         .updateOne({_id: req.params.id}, {
+//           $inc: {likesCount: 1},
+//           $push: {likes: req.user._id},
+//           $inc: {dislikesCount: -1},
+//           $pull: {dislikes: req.user._id}
+//         });
+//     }
+//     // check if the likedUser is in the likes array and the dislikedUser is not in the dislikes array
+//     // then decrease the likesCount by 1 and pull the likedUser form the likes array
+//     // but don't do any thing with the dislikes array  
+//     else if (likedUser && !dislikedUser) {
+//       await Story
+//         .updateOne(
+//           {_id: req.params.id}, {
+//             $inc: {likesCount: -1},
+//             $pull: {likes: req.user._id}
+//           }
+//         );
+//     }
+//      res.redirect(`/api/stories/${req.params.id}`);
+//       // const story = await Story.findById(req.params.id);
+//       // res.redirect(`/api/stories/${story._id}`);
+
+//   }
+//   catch(ex) {
+//     console.log(ex);
+//   }
+// });
+
+// router.post('/dislikes/:id', auth, async (req, res) => {
+
+//   const story = await Story.findById(req.params.id);
+//     let likedUser = false;
+//     let dislikedUser = false;
+//     story.likes.forEach(ele => {
+//       if (ele == req.user._id)
+//         likedUser = true;
+//     });
+//     story.dislikes.forEach(ele => {
+//       if (ele == req.user._id)
+//         dislikedUser = true;
+//     });
+
+//   if (!dislikedUser && !likedUser) {
+//     // add a dislike and push the user id
+//     await Story
+//       .updateOne(
+//         {_id: req.params.id}, {
+//           $inc: {dislikesCount: 1},
+//           $push: {dislikes: req.user._id}
+//         }
+//       );
+//   }
+//   else if (!dislikedUser && likedUser) {
+//     await Story
+//       .updateOne(
+//         {_id: req.params.id}, {
+//           $inc: {likesCount: -1},
+//           $pull: {likes: req.user._id},
+//           $inc: {dislikesCount: 1},
+//           $push: {dislikes: req.user._id}
+//         }
+//       );
+//   } 
+  
+//   else if (dislikedUser && !likedUser) {
+//     // decrease a dislike and pull the user id from the dislikes array
+//     await Story
+//       .updateOne(
+//         {_id: req.params.id}, {
+//           $inc: {dislikesCount: -1},
+//           $pull: {dislikes: req.user._id}
+//         }
+//       )
+//   }
+//   res.redirect(`/api/stories/${req.params.id}`);
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router;

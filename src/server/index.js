@@ -19,7 +19,7 @@ const loggedIn = require('./middleware/logged');
 
 const app = express();
 
-const {truncate, stripTags, editIcon, editDeleteIcon, formatDate, username, userInfo, hideLoggedInDate} = require('../../helpers/hbs');
+const {truncate, stripTags, editIcon, editDeleteIcon, formatDate, username, showProfileOrDashboard} = require('../../helpers/hbs');
 
 mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb://localhost/storyBooks', { useNewUrlParser: true })
@@ -36,8 +36,7 @@ app.engine('handlebars', exphbs({
       stripTags,
       formatDate,
       username,
-      userInfo,
-      hideLoggedInDate
+      showProfileOrDashboard
     },
     defaultLayout: 'main'
   }));

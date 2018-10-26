@@ -29,7 +29,7 @@ const storySchema = new mongoose.Schema({
   comments: [{
     commentBody: {
       type: String,
-      required: true
+      // required: true
     },
     commentDate: {
       type: Date,
@@ -40,15 +40,36 @@ const storySchema = new mongoose.Schema({
       ref: 'User'
     }
   }],
+  
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
+  },
+
+  likes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  likesCount: {
+    type: Number,
+    default: 0
+  },
+
+  dislikes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
+  dislikesCount: {
+    type: Number,
+    default: 0
   }
 
 });
 
 
-const Story = mongoose.model('Story', storySchema);
+const Story = mongoose.model('Story', storySchema, 'stories');
 
 function validateStory(story) {
   const Schema = {

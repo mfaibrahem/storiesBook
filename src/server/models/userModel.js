@@ -5,6 +5,12 @@ const config = require('config');
 
 
 const userSchema = new mongoose.Schema({
+
+  story: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Story'
+  },
+
   name: {
     type: String,
     required: true,
@@ -14,7 +20,6 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    minlength: 8,
     maxlength: 255,
     unique: true
   },
@@ -53,7 +58,7 @@ const User = mongoose.model('User', userSchema);
 function validateUser(user) {
   const Schema = Joi.object().keys({
     name: Joi.string().min(5).max(50).required(),
-    email: Joi.string().min(5).max(255).email().required(),
+    email: Joi.string().email().required(),
     password: Joi
       .string().min(8).max(30)
       .required().regex(/^[a-zA-Z0-9 _\!\-\?\.]{8,30}$/),
@@ -62,10 +67,11 @@ function validateUser(user) {
   return Joi.validate(user, Schema);
 }
 
+
 function validatePassword(password) {
   let err = '';
   if (!password.match(/.*[a-z].*/)) err = 'password must contain at least one lower case char';
-  else if (!password.match(/.*[A-Z].*/)) err = 'password must contain at least one upper case char';
+  // else if (!password.match(/.*[A-Z].*/)) err = 'password must contain at least one upper case char';
   else if (!password.match(/.*[0-9].*/)) err = 'password must contain at least one number';
   else if (!password.match(/.*[ _\?\.\-\!].*/)) err = 'password must contain at least one special char';
   else err = 'passed';

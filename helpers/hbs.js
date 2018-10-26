@@ -63,23 +63,8 @@ module.exports = {
       return '';
     }
   },
-  userInfo: function(storyUserId, loggedUserId, storyUsername, storyUserfirstL, n) {
-    if (storyUserId != loggedUserId) {
-      return `
-        <div class="info">
-          <div class="first-letter"><span>${storyUserfirstL}</span></div>
-          <div class="sub">
-            <a class="edit-user-link" href="/api/users/${storyUserId}"><span>${storyUsername}</span></a>
-            <div class="n-stories">Stories >> <span>${n}</span></div>
-          </div>
-        </div>
-      `;
-    } else {
-      return '';
-    }
-  },
 
-  hideLoggedInDate: function(storyUserId, loggedUser, storyUsername) {
+  showProfileOrDashboard: function(storyUserId, loggedUser, storyUsername) {
     if (storyUserId == loggedUser) {
       return `
         <a class="edit-user-link" href="/api/users/me"><span>${storyUsername}</span></a>
@@ -90,9 +75,4 @@ module.exports = {
       `;
     }
   }
-  // hideLoggedInDate: function(storyUserId, loggedUser, UserJoinDate, format) {
-  //   if (storyUserId != loggedUser) {
-  //     return moment(UserJoinDate).format(format);
-  //   }
-  // }
 }

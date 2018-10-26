@@ -56,6 +56,19 @@
     .stories-wrapper {
       grid-template-columns: 1fr 1fr;
     }
+
+    .single-story {
+      .top {
+        .join-date {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    .dashboard-wrapper {
+      .head .content .info span.join-date {
+        font-size: 1.3rem;
+      }
+    }
   }
   footer {
     &.clip-footer {
@@ -107,9 +120,7 @@
     .card {
       width: 50vw;
     }
-    .single-story .top .join-date {
-      display: block;
-    }
+    
   }
   .add-story-form {
     width: 80vw;

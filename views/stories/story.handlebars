@@ -11,7 +11,7 @@
       <div class="info">
         <div class="first-letter"><span>{{firstLetter}}</span></div>
         <div class="sub">
-          {{{hideLoggedInDate story.user._id user._id story.user.name}}}
+          {{{showProfileOrDashboard story.user._id user._id story.user.name}}}
           <div class="n-stories">Stories >> <span>{{nStories}}</span></div>
           <span class="join-date">Joined ( {{formatDate targetUser.date 'D MMMM YYYY'}} )</span>
         </div>
@@ -23,22 +23,78 @@
         <div class="sub">
           <a class="edit-user-link" href="/api/users/{{story.user._id}}"><span>{{story.user.name}}</span></a>
           <div class="n-stories">Stories >> <span>{{nStories}}</span></div>
-          <span class="join-date">Joind ( {{formatDate story.user._id user._id story.user.date 'D MMMM YYYY'}} )</span>
+          <span class="join-date">Joind ( {{formatDate targetUser.date 'D MMMM YYYY'}} )</span>
         </div>
       </div>
     {{/if}}
   </div>
   
   <div class="bottom">
-    <h1>{{story.title}}
-      <span>( {{formatDate story.date 'D MMMM YYYY'}} )</span>
-    </h1>
+    <div class="story-title">
+      <h2 class="header">{{story.title}}</h2>
+      <div class="likes-dislikes-date">
+        <span class="date">( {{formatDate story.date 'D MMMM YYYY'}} )</span>
+        <div class="likes-dislikes">
+          {{#if loggedIn}}
+            <div class="likes-wrapper">
+              <form method="POST" action="/api/stories/likes/{{story._id}}">
+                <button type="submit"><i class="fas fa-thumbs-up"></i></button>
+              </form>
+              <span class="likes-count">{{story.likesCount}}</span>
+            </div>
+            <div class="dislikes-wrapper">
+              <form method="POST" action="/api/stories/dislikes/{{story._id}}">
+                <button type="submit"><i class="fas fa-thumbs-down"></i></button>
+              </form>
+              <sapn class="dislikes-count">{{story.dislikesCount}}</span>
+            </div>
+          {{else}}
+            <div class="likes-wrapper">
+              <div class="not-logged-likes"><i class="fas fa-thumbs-up"></i></div>
+              <span class="not-logged-likes-count">{{story.likesCount}}</span>  
+            </div>
+            <div class="dislikes-wrapper">
+              <div class="not-logged-dislikes"><i class="fas fa-thumbs-down"></i></div>
+              <span class="not-logged-dislikes-count">{{story.dislikesCount}}</span>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
     <p>{{{story.details}}}</p>
     
     {{#if loggedIn}}    
         {{{editDeleteIcon story.user._id user._id story._id}}} 
     {{else}}
     {{/if}}
+    
   </div>
+
+
+  {{#if story.allowComments}}
+      <h1>Comments</h1>
+
+      {{#each story.comments}}
+        <div class="comment-wrapper">
+          <h1>{{commentUser.name}}</h1>
+          <p>{{{commentBody}}}</p>
+          <span>{{formatDate commentDate 'D MMMM YYYY'}}</span>
+        </div>
+      {{/each}} 
+
+      {{#if loggedIn}}
+        <form method="POST" action="/api/stories/comment/{{story._id}}">
+          <textarea id="details" name="commentBody"></textarea>
+          <button type="submit">Submit</button>
+        </form>
+
+      {{else}}
+        <p>Please <a style="display: inline; background-color: gold;" href="/api/auth">Login</a> to leave a comment</p>
+      {{/if}} 
+
+  {{else}}
+  {{/if}}
+
+  
 
 </div>

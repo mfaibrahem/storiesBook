@@ -5,7 +5,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(128, 0, 0, .2);
+  background: rgba(0, 0, 0, .4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,8 +18,8 @@
     width: 90%;
     padding: 1rem 1.8rem;
     border-radius: .3rem;
-    box-shadow: 2px 2px 3rem 17px rgba(0, 0, 0, .4);
-    background-color: #DDD;
+    box-shadow: 2px 2px 3rem 17px rgba(0, 0, 0, .3);
+    background-color: #FFF;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,7 +39,7 @@
     span {
       font-size: 1rem;
       padding-bottom: 1.2rem;
-      border-bottom: 2px solid #FFF;
+      border-bottom: 2px solid #DDD;
       align-self: stretch;
       text-align: center;
       margin: 0 -1.8rem 2rem -1.8rem;
@@ -85,6 +85,9 @@
           &:nth-of-type(2) {
             color: #00ff6a;
           }
+        }
+        &:focus {
+          outline: 0;
         }
       }
 
