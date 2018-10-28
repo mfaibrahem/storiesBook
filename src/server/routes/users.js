@@ -44,7 +44,7 @@ router.get('/me', auth, async (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  if (res.locals.loggedIn) return res.status(401).redirect('/');
+  if (res.locals.loggedIn) return res.status(401).redirect('/api/stories');
   else
     res.render('./users/regForm');
 });

@@ -2,44 +2,13 @@
 .container {
   min-height: 100vh;
   padding-top: 140px;
-  margin-bottom: 10rem;
+  margin-bottom: 8rem;
   @include easeOut(.6s);
   &.clip-container {
     transform: translateX(80vw);
   }
   a:visited {
     color: unset;
-  }
-
-  .card {
-    margin: auto;
-    margin-top: 4rem;
-    width: 80%;
-    padding: 3rem;
-    text-align: center;
-    background-color: rgba(13, 0, 29, 0.714);
-    border-radius: .3rem;
-
-    h1 {
-      color: #fff;
-      font-size: 4rem;
-      letter-spacing: 6px;
-      margin-bottom: 1rem;
-    }
-    p {
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    a {
-      font-size: 1.2rem;
-      padding: 1rem 2rem;
-      background-color: #333;
-      color: #fff;
-      border-radius: .5rem;
-      max-width: max-content;
-      margin: auto;
-    }
   }
 
   .add-story-form {

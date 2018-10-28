@@ -163,16 +163,17 @@ router.get('/:id', async (req, res) => {
         story, firstLetter, nStories, targetUser
     });
   } catch(ex) {
-    res.status(404).redirect('/');
+    res.status(404).redirect('/api/stories');
   }
 });
 
 // post a comment
-router.post('/comment/:id', auth, async(req, res) => {
+// router.post('/comment/:id', auth, async(req, res) => {
+router.post('/:storyId', auth, async(req, res) => {
 
   try {
     let story = await Story
-      .findById(req.params.id);
+      .findById(req.params.storyId);
       
     story.comments.unshift({
       commentBody: req.body.commentBody,
@@ -185,6 +186,7 @@ router.post('/comment/:id', auth, async(req, res) => {
     console.log(ex);
   }
 });
+
 
 
 router.post('/likes/:id', auth, async (req, res) => {

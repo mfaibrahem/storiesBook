@@ -51,6 +51,18 @@ if (document.querySelector('.delete-form')) {
           UIalert.classList.add('show-alert');
   });
 }
+if (document.querySelector('.leave-comment')) {
+  const UIleaveComment = document.querySelector('.leave-comment');
+  const UIcommentForm = document.querySelector('.story-comment-form');
+  const UIarrowDown = document.querySelector('.arrow-down');
+  const UIarrowUp = document.querySelector('.arrow-up');
+
+  UIleaveComment.addEventListener('click', () => {
+    UIcommentForm.classList.toggle('show-comment-form');
+    UIarrowDown.classList.toggle('hide');
+    UIarrowUp.classList.toggle('show');
+  });
+}
 
 
 

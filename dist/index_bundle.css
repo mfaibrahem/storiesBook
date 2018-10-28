@@ -352,37 +352,12 @@ header {
 .container {
   min-height: 100vh;
   padding-top: 140px;
-  margin-bottom: 10rem;
+  margin-bottom: 8rem;
   transition: all 0.6s ease-out; }
   .container.clip-container {
     transform: translateX(80vw); }
   .container a:visited {
     color: unset; }
-  .container .card {
-    margin: auto;
-    margin-top: 4rem;
-    width: 80%;
-    padding: 3rem;
-    text-align: center;
-    background-color: rgba(13, 0, 29, 0.714);
-    border-radius: .3rem; }
-    .container .card h1 {
-      color: #fff;
-      font-size: 4rem;
-      letter-spacing: 6px;
-      margin-bottom: 1rem; }
-    .container .card p {
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 1.5rem; }
-    .container .card a {
-      font-size: 1.2rem;
-      padding: 1rem 2rem;
-      background-color: #333;
-      color: #fff;
-      border-radius: .5rem;
-      max-width: max-content;
-      margin: auto; }
   .container .add-story-form {
     display: flex;
     flex-direction: column;
@@ -569,17 +544,41 @@ header {
         color: #222;
         padding: 1rem;
         position: relative; }
-        .container .stories-wrapper .story-wrapper .left h3 {
-          font-weight: bold;
-          padding: 0 1rem 1rem 1rem;
+        .container .stories-wrapper .story-wrapper .left div.title-date-likes {
+          padding: 0 1rem .8rem 1rem;
           margin: 0 -1rem 1rem -1rem;
           border-bottom: 3px solid #FFF; }
-          .container .stories-wrapper .story-wrapper .left h3 span {
-            font-size: 1rem;
-            margin-left: 1rem;
-            font-family: garamond, sans-serif;
-            font-weight: lighter;
-            vertical-align: middle; }
+          .container .stories-wrapper .story-wrapper .left div.title-date-likes .title {
+            font-weight: bold; }
+          .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date {
+            margin-top: .3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; }
+            .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .story-date {
+              font-size: .9rem;
+              font-family: garamond, sans-serif;
+              font-weight: 300;
+              vertical-align: middle; }
+            .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes {
+              display: flex; }
+              .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .likes-wrapper, .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .dislikes-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center; }
+                .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .likes-wrapper div, .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .dislikes-wrapper div {
+                  font-size: .9rem;
+                  margin-right: .3rem; }
+                .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .likes-wrapper span, .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .dislikes-wrapper span {
+                  font-size: .9rem; }
+                .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .likes-wrapper.likes-wrapper, .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .dislikes-wrapper.likes-wrapper {
+                  margin-right: 1rem; }
+                  .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .likes-wrapper.likes-wrapper i, .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .dislikes-wrapper.likes-wrapper i {
+                    color: #fbc531; }
+                .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .likes-wrapper.dislikes-wrapper, .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .dislikes-wrapper.dislikes-wrapper {
+                  margin-right: 1rem; }
+                  .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .likes-wrapper.dislikes-wrapper i, .container .stories-wrapper .story-wrapper .left div.title-date-likes .likes-dislikes-date .likes-dislikes .dislikes-wrapper.dislikes-wrapper i {
+                    color: #ff6b81; }
         .container .stories-wrapper .story-wrapper .left .dashboard-icon-link {
           color: #FFF;
           background-color: #55efc3;
@@ -843,6 +842,92 @@ header {
             height: 1.7rem; }
             .container .single-story .bottom .delete-form .delete-btn div svg .x-path {
               fill: #eb4747; }
+    .container .single-story .comment-wrapper {
+      background-color: #FFc;
+      margin-bottom: 5px; }
+      .container .single-story .comment-wrapper .original-comment {
+        border-left: 4px solid gold;
+        padding: 1rem; }
+        .container .single-story .comment-wrapper .original-comment > p {
+          display: flex;
+          align-items: center;
+          margin: 0 0 .5rem 0; }
+          .container .single-story .comment-wrapper .original-comment > p .user-name i {
+            color: gold;
+            font-size: .8rem;
+            margin-right: .3rem; }
+          .container .single-story .comment-wrapper .original-comment > p .comment-date {
+            color: #444;
+            font-size: .8rem;
+            margin-left: .5rem; }
+        .container .single-story .comment-wrapper .original-comment .comment-body {
+          margin-left: 2rem; }
+    .container .single-story .leave-comment {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      width: max-content;
+      cursor: pointer; }
+      .container .single-story .leave-comment span {
+        display: flex;
+        align-items: center;
+        color: #218c74;
+        transition: .3s ease-out; }
+      .container .single-story .leave-comment svg {
+        width: .8rem;
+        margin-left: .3rem; }
+        .container .single-story .leave-comment svg path {
+          fill: gold;
+          transition: .3s ease-out; }
+        .container .single-story .leave-comment svg.arrow-down.hide {
+          display: none; }
+        .container .single-story .leave-comment svg.arrow-up {
+          display: none; }
+        .container .single-story .leave-comment svg.show {
+          display: block; }
+      .container .single-story .leave-comment:hover span {
+        color: #222; }
+      .container .single-story .leave-comment:hover svg path {
+        fill: #218c74; }
+    .container .single-story .story-comment-form {
+      display: block;
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 1s ease-out;
+      overflow: hidden;
+      margin-top: 1rem;
+      margin-bottom: 1rem; }
+      .container .single-story .story-comment-form.show-comment-form {
+        height: 300px;
+        opacity: 1;
+        visibility: visible; }
+      .container .single-story .story-comment-form button {
+        color: #218c74;
+        padding: .5rem .9rem;
+        cursor: pointer;
+        border: 1px solid;
+        border-color: gold;
+        outline: 0;
+        background-color: transparent;
+        margin-top: 1rem;
+        position: relative;
+        border-radius: 2rem;
+        letter-spacing: 1px; }
+        .container .single-story .story-comment-form button:hover {
+          color: #222;
+          transition: all .2s ease-out;
+          background-color: gold; }
+          .container .single-story .story-comment-form button:hover::after {
+            content: "";
+            position: absolute;
+            border-radius: 2rem;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 25%, rgba(255, 215, 0, 0.5) 75%); }
 
 @keyframes hide {
   10% {

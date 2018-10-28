@@ -1,7 +1,33 @@
 
 const mongoose = require('mongoose');
 const Joi = require('joi');
+
+// const replySchema = new mongoose.Schema({
+//   replyBody: {type: String, minlength: 3},
+//   replyDate: {type: Date, default: Date.now},
+//   parentComment: {type: mongoose.Schema.Types.ObjectId, ref: 'Comment'},
+//   replyUser: {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: 'User'
+//   },
+//   repliesToReply: [{
+//     replyBody: {type: String, minlength: 3},
+//     replyDate: {type: Date, default: Date.now},
+//     replyUser: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+//     parentReply: {type: mongoose.Schema.Types.ObjectId, ref: 'Reply'},
+    
+//   }]
+// });
+const commentSchema = new mongoose.Schema({
+  commentBody: { type: String, minlength: 3},
+  commentDate: {type: Date, default: Date.now},
+  commentUser: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  // replies: [replySchema]
+})
+
+
 const storySchema = new mongoose.Schema({
+  comments: [commentSchema],
   title: {
     type: String,
     required: true,
@@ -26,20 +52,22 @@ const storySchema = new mongoose.Schema({
     type: Boolean,
     required: true
   },
-  comments: [{
-    commentBody: {
-      type: String,
-      // required: true
-    },
-    commentDate: {
-      type: Date,
-      default: Date.now
-    },
-    commentUser: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    }
-  }],
+  // comments: [{
+  //   commentBody: {
+  //     type: String,
+  //     // required: true
+  //   },
+  //   commentDate: {
+  //     type: Date,
+  //     default: Date.now
+  //   },
+  //   commentUser: {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'User'
+  //   }
+  
+  // }],
+
   
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -69,7 +97,11 @@ const storySchema = new mongoose.Schema({
 });
 
 
+
 const Story = mongoose.model('Story', storySchema, 'stories');
+const Comment = mongoose.model('Comment', commentSchema);
+// const Reply = mongoose.model('Reply', replySchema);
+
 
 function validateStory(story) {
   const Schema = {

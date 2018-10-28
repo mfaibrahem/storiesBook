@@ -11,7 +11,7 @@ const {User} = require('../models/userModel');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  if (res.locals.loggedIn) return res.status(401).redirect('/');
+  if (res.locals.loggedIn) return res.status(401).redirect('/api/stories');
   res.render('./users/loginForm');
 });
 

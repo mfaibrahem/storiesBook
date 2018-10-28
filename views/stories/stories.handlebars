@@ -10,9 +10,22 @@
     <div class="story-wrapper">
   
       <div class="left">
-        <h3>{{title}}
-          <span>( {{formatDate story.date 'D MMMM YYYY'}} )</span>
-        </h3>
+        <div class="title-date-likes">
+          <div class="title">{{title}}</div>
+          <div class="likes-dislikes-date">
+            <span class="story-date">( {{formatDate story.date 'D MMMM YYYY'}} )</span>
+            <div class="likes-dislikes">
+              <div class="likes-wrapper">
+                <div><i class="fas fa-thumbs-up"></i></div>
+                <span>{{likesCount}}</span>  
+              </div>
+              <div class="dislikes-wrapper">
+                <div><i class="fas fa-thumbs-down"></i></div>
+                <span>{{dislikesCount}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <p>{{stripTags (truncate details 150)}}</p>
         
         <a class="edit-user-link" href="/api/stories/{{_id}}">read more</a>
