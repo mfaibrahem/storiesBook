@@ -1,6 +1,6 @@
 
-const LocalStorage = require('node-localstorage').LocalStorage;
-localStorage = new LocalStorage('./scratch');
+// const LocalStorage = require('node-localstorage').LocalStorage;
+// localStorage = new LocalStorage('./scratch');
 
 const express = require('express');
 const bcrypt = require('bcrypt');
@@ -46,7 +46,8 @@ router.post('/', async (req, res) => {
     
 
     const token = user.generateAuthToken();
-    localStorage.setItem('localToken', token);
+    // localStorage.setItem('localToken', token);
+    res.cookie('cookieToken', token);
     res.redirect('/api/stories');
 
   } catch(ex) {

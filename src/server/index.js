@@ -6,8 +6,9 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const config = require('config');
-const LocalStorage = require('node-localstorage').LocalStorage;
-localStorage = new LocalStorage('./scratch');
+// const LocalStorage = require('node-localstorage').LocalStorage;
+// localStorage = new LocalStorage('./scratch');
+const cookieParser = require('cookie-parser');
 
 const home = require('./routes/home');
 const about = require('./routes/about');
@@ -50,6 +51,8 @@ app.use('/static', express.static(path.join(__dirname, '../', '../', './dist')))
 console.log(path.resolve(__dirname, '../../'));
   // method override middleware
 app.use(methodOverride('_method'));
+
+app.use(cookieParser());
 
   // check logged middleware
 app.use('/', loggedIn);

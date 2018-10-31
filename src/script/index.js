@@ -27,7 +27,7 @@ if (document.querySelector('.display-error')) {
 
 const UIalert = document.querySelector('.alert');
 
-
+console.log('hello');
 UIalert.addEventListener('click', (e) => {
   if (e.target.classList.contains('x-alert') ||
       e.target.parentElement.classList.contains('x-alert') ||

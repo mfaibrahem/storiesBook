@@ -1,6 +1,6 @@
 
-const LocalStorage = require('node-localstorage').LocalStorage;
-localStorage = new LocalStorage('./scratch');
+// const LocalStorage = require('node-localstorage').LocalStorage;
+// localStorage = new LocalStorage('./scratch');
 
 const express = require('express');
 const bcrypt = require('bcrypt');
@@ -11,6 +11,7 @@ const { Story } = require('../models/storyModel');
 const auth = require('../middleware/auth');
 
 const router = express.Router();
+
 
 router.get('/me', auth, async (req, res) => {
   const user = await User.findById(req.user._id).select('-password');
@@ -108,7 +109,8 @@ router.post('/', async (req, res) => {
     await user.save();
     const token = user.generateAuthToken();
     // res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
-    localStorage.setItem('localToken', token);
+    // localStorage.setItem('localToken', token);
+    res.cookie('cookieToken', token);
     res.redirect('/api/stories');
   } catch(ex) {
     console.log(ex)
