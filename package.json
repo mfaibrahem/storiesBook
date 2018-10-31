@@ -10,7 +10,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production -w"
+    "build": "webpack --mode production -w",
+    "start": "node src/server/index.js"
+  },
+  "engines": {
+    "node": "10.6.0"
   },
   "keywords": [
     "story",
