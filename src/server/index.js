@@ -23,7 +23,7 @@ const app = express();
 const {truncate, stripTags, editIcon, editDeleteIcon, formatDate, username, showProfileOrDashboard} = require('../../helpers/hbs');
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb://localhost/storyBooks', { useNewUrlParser: true })
+mongoose.connect(config.get('db'), { useNewUrlParser: true })
   .then(() => console.log('connected to mongodb'))
   .catch(err =>  console.error('could not connect to monogodb'));
 

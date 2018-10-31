@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey": "story_jwtPrivateKey"
+  "jwtPrivateKey": "story_jwtPrivateKey",
+  "db": "story_db"
 }
